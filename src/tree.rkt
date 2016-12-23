@@ -1,8 +1,8 @@
 #lang racket
 
 (define maquinaEstadoInicial (lambda (n)
-  (if (<= n 1) (list (getRoot 1))
-    (if (<= n 2) (list (getRoot 1) (getLeaf 2) (getLeaf 3))
+  (if (<= n 0) (list (getRoot 1))
+    (if (<= n 1) (list (getRoot 1) (getLeaf 2) (getLeaf 3))
       (list (getRoot 1)
         (getMachine 2 (- n 1))
         (getMachine 3 (- n 1)))))))
@@ -23,7 +23,7 @@
   (+ (* 2 prev) 1) ))
 
 (define getMachine (lambda (id n)
-  (if (equal? n 2) (list (getRoot id) (getLeaf (idIzq id)) (getLeaf (idDer id)))
+  (if (equal? n 1) (list (getRoot id) (getLeaf (idIzq id)) (getLeaf (idDer id)))
     (list (getRoot id)
       (getMachine (idIzq id) (- n 1))
       (getMachine (idDer id) (- n 1)) ))))
